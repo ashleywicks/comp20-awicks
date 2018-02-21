@@ -13,8 +13,115 @@
 <video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll" controls></video>
 <div id="lyrics"></div>
 
-<script>
-	// Complete this section and create a CSS file named style.css
+<script type="text/javascript">
+	var video = document.getElementById("rickroll");
+	var lyrics = document.getElementById("lyrics");
+	video.addEventListener("timeupdate", function() {
+		if (video.currentTime < 19) {
+			lyrics.innerHTML ="";
+		}
+		else if (video.currentTime > 19 && video.currentTime < 34.5) {
+			lyrics.innerHTML = "<p>We're no strangers to love</p>" +
+			                   "<p>You know the rules and so do I</p>" +
+			                   "<p>A full commitment's what I'm thinking of</p>" +
+			                   "<p>You wouldn't get this from any other guy</p>";
+		}
+		else if (video.currentTime > 34.5 && video.currentTime < 42.5) {
+			lyrics.innerHTML = "<p>I just wanna tell you how I'm feeling</p>" +
+			                   "<p>Gotta make you understand</p>";
+		}
+		else if (video.currentTime > 42.5 && video.currentTime < 60) {
+			lyrics.innerHTML = "<p>Never gonna give you up</p>" +
+			                   "<p>Never gonna let you down</p>" +
+			                   "<p>Never gonna run around and desert you</p>" +
+			                   "<p>Never gonna make you cry</p>" +
+			                   "<p>Never gonna say goodbye</p>" +
+			                   "<p>Never gonna tell a lie and hurt you</p>";
+		}
+		else if (video.currentTime > 60 && video.currentTime < 76.5) {
+			lyrics.innerHTML = "<p>We've known each other for so long</p>" +
+					           "<p>Your heart's been aching, but</p>" +
+					           "<p>You're too shy to say it</p>" +
+					           "<p>Inside, we both know what's been going on</p>" +
+					           "<p>We know the game and we're gonna play it</p>";
+		}
+		else if (video.currentTime > 76.5 && video.currentTime < 84) {
+			lyrics.innerHTML = "<p>And if you ask me how I'm feeling</p>" +
+			                   "<p>Don't tell me you're too blind to see</p>";
+		}
+		else if (video.currentTime > 84 && video.currentTime < 101) {
+			lyrics.innerHTML = "<p>We've known each other for so long</p>" +
+					           "<p>Your heart's been aching, but</p>" +
+					           "<p>You're too shy to say it</p>" +
+					           "<p>Inside, we both know what's been going on</p>" +
+					           "<p>We know the game and we're gonna play it</p>";
+		}
+		else if (video.currentTime > 101 && video.currentTime < 102) {
+			lyrics.innerHTML = "";
+		}
+		else if (video.currentTime > 102 && video.currentTime < 118) {
+			lyrics.innerHTML = "<p>We've known each other for so long</p>" +
+					           "<p>Your heart's been aching, but</p>" +
+					           "<p>You're too shy to say it</p>" +
+					           "<p>Inside, we both know what's been going on</p>" +
+					           "<p>We know the game and we're gonna play it</p>";
+		}
+		else if (video.currentTime > 118 && video.currentTime < 119) {
+			lyrics.innerHTML = "";
+		}
+		else if (video.currentTime > 119 && video.currentTime < 135) {
+			lyrics.innerHTML = "<p>(Ooh, give you up)</p>" +
+			                   "<p>(Ooh, give you up)</p>" +
+			                   "<p>Never gonna give, never gonna give</p>" +
+			                   "<p>(Give you up)</p>" +
+			                   "<p>Never gonna give, never gonna give</p>" +
+			                   "<p>(Give you up)</p>";
+		}
+		else if (video.currentTime > 135 && video.currentTime < 153) {
+			lyrics.innerHTML = "<p>We've known each other for so long</p>" +
+					           "<p>Your heart's been aching, but</p>" +
+					           "<p>You're too shy to say it</p>" +
+					           "<p>Inside, we both know what's been going on</p>" +
+					           "<p>We know the game and we're gonna play it</p>";
+		}
+		else if (video.currentTime > 153 && video.currentTime < 161) {
+			lyrics.innerHTML = "<p>I just wanna tell you how I'm feeling</p>" +
+					           "<p>Gotta make you understand</p>";
+		}
+		else if (video.currentTime > 161 && video.currentTime < 177.5) {
+			lyrics.innerHTML = "<p>Never gonna give you up</p>" +
+			                   "<p>Never gonna let you down</p>" +
+			                   "<p>Never gonna run around and desert you</p>" +
+			                   "<p>Never gonna make you cry</p>" +
+			                   "<p>Never gonna say goodbye</p>" +
+			                   "<p>Never gonna tell a lie and hurt you</p>";
+		}
+		else if (video.currentTime > 177.5 && video.currentTime < 178.5) {
+			lyrics.innerHTML = "";
+		}
+		else if (video.currentTime > 178.5 && video.currentTime < 193.5) {
+			lyrics.innerHTML = "<p>Never gonna give you up</p>" +
+			                   "<p>Never gonna let you down</p>" +
+			                   "<p>Never gonna run around and desert you</p>" +
+			                   "<p>Never gonna make you cry</p>" +
+			                   "<p>Never gonna say goodbye</p>" +
+			                   "<p>Never gonna tell a lie and hurt you</p>";
+		}
+		else if (video.currentTime > 193.5 && video.currentTime < 194.5) {
+			lyrics.innerHTML = "";
+		}
+		else if (video.currentTime > 194.5) {
+			lyrics.innerHTML = "<p>Never gonna give you up</p>" +
+			                   "<p>Never gonna let you down</p>" +
+			                   "<p>Never gonna run around and desert you</p>" +
+			                   "<p>Never gonna make you cry</p>" +
+			                   "<p>Never gonna say goodbye</p>" +
+			                   "<p>Never gonna tell a lie and hurt you</p>";
+		}
+		else {
+			lyrics.innerHTML ="";
+		}
+		}, false);
 </script>
 </body>
 </html>	
