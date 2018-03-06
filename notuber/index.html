@@ -9,11 +9,33 @@
 		<link rel="stylesheet" href="style.css"/>
 		<script>
 			var map;
+			var myLat = 0;
+			var myLng = 0;
+			var me;
+
 			function initMap() {
+				getMyLocation();
 				map = new google.maps.Map(document.getElementById('map'), {
-					center: {lat: -34.397, lng: 150.644},
-					zoom: 8
+					center: {lat: myLat, lng: myLng},
+					zoom: 16
 				});
+			}
+
+			function getMyLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+						showMap();
+					});
+				} else {
+					alert("Geolocation not supported by this browser :-(");
+				}
+			}
+
+			function showMap() {
+				me = new google.maps.LatLng(myLat, myLng);
+				map.panTo(me);
 			}
 		</script>
 	</head>
