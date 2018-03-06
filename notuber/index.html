@@ -12,6 +12,7 @@
 			var myLat = 0;
 			var myLng = 0;
 			var me;
+			var marker;
 
 			function initMap() {
 				getMyLocation();
@@ -36,6 +37,12 @@
 			function showMap() {
 				me = new google.maps.LatLng(myLat, myLng);
 				map.panTo(me);
+
+				marker = new google.maps.Marker({
+					position: me,
+					icon: "marker.png"
+				});
+				marker.setMap(map);
 			}
 		</script>
 	</head>
