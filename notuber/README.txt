@@ -1,0 +1,8 @@
+Ashley Wicks
+Comp 20 Assignment 2
+
+CORRECTLY IMPLEMENTED
+
+ACKNOWLEDGMENTS
+
+TIME SPENT
