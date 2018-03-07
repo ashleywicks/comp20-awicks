@@ -13,8 +13,14 @@
 			var myLat = 0;
 			var myLng = 0;
 			var me;
-			var marker;
 			var username = "0QuKBYCaHf";
+			/* Set to vehicle if I am a passenger,
+			 * or passenger if I am a vehicle */
+			var vehiclesOrPassengers = "vehicle";
+			var minDist = Infinity;
+			var infowindow = new google.maps.InfoWindow ({
+				content: ""
+			});
 
 			function initMap() {
 				getMyLocation();
@@ -41,15 +47,24 @@
 				me = new google.maps.LatLng(myLat, myLng);
 				map.panTo(me);
 
-				marker = new google.maps.Marker({
+				requestData();
+
+				var marker = new google.maps.Marker({
 					position: me,
 					icon: "marker.png",
-					title: "Username: " + username +
-					       "\nDistance from nearest: loading..."
+					username: username,
+					dist: minDist,
+					map: map
 				});
-				marker.setMap(map);
-
-				requestData();
+				google.maps.event.addListener(marker, 'click', function(marker) {
+					return function() {
+						infowindow.setContent("<p>Username: " + marker.username +
+							                  "</p><p>Distance to nearest " + 
+							                  vehiclesOrPassengers + ": " + minDist +
+							                  " miles");
+						infowindow.open(map, marker);
+					}
+				} (marker));
 			}
 
 			function requestData() {
@@ -68,21 +83,19 @@
 			function populateMap(data) {
 				// I am a passenger
 				if ("vehicles" in data) {
+					vehiclesOrPassengers = "vehicle";
 					var vehicles = data["vehicles"];
 					vehicles = calcDist(vehicles);
-					var minDist = calcMinDist(vehicles);
-					marker.title = "Username: " + username +
-					               "\nDistance from nearest vehicle: " + minDist;
-					display(vehicles, true);
+					calcMinDist(vehicles);
+					display(vehicles);
 				}
 				// I am a vehicle
 				else if ("passengers" in data) {
+					vehiclesOrPassengers = "passenger";
 					var passengers = data["passengers"];
 					passengers = calcDist(passengers);
 					var minDist = calcMinDist(passengers);
-					marker.title = "Username: " + username +
-					               "\nDistance from nearest passenger: " + minDist;
-					display(passengers, false);
+					display(passengers);
 				}
 			}
 
@@ -104,22 +117,33 @@
 						minDist = things[i].dist;
 					}
 				}
-				return minDist;
 			}
 
-			function display(things, areVehicles) {
+			function display(things) {
+				var marker;
+				var usernames = [];
+				var dists = [];
 				for (var i = 0; i < things.length; i++) {
-					var loc = new google.maps.LatLng(things[i].lat, things[i].lng);
+					var thing = things[i];
+					var loc = new google.maps.LatLng(thing.lat, thing.lng);
 					var icon;
-					if (areVehicles) icon = "car.png";
-					else icon = "person.png";
+					if (vehiclesOrPassengers == "vehicle") icon = "car.png";
+					else if (vehiclesOrPassengers == "passenger") icon = "person.png";
 					marker = new google.maps.Marker({
 						position: loc,
 						icon: icon,
-						title: "Username: " + things[i].username +
-						       "\nDistance: " + things[i].dist
+						username: thing.username,
+						dist: thing.dist,
+						map: map
 					});
-					marker.setMap(map);
+					google.maps.event.addListener(marker, 'click', function(marker) {
+						return function() {
+							infowindow.setContent("<p>Username: " + marker.username +
+								                  "</p><p>Distance: " + marker.dist +
+								                  " miles");
+							infowindow.open(map, marker);
+						}
+					} (marker));
 				}
 			}
 
