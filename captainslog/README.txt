@@ -1,0 +1,9 @@
+Ashley Wicks
+Comp 20 Lab 7: Captain's Log
+March 15, 2018
+
+CORRECTLY IMPLEMENTED
+
+ACNKOWLEDGMENTS
+
+TIME SPENT
