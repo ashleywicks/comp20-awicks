@@ -9,7 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            displayMsgs();
+            var msgs;
+            var storedString = localStorage.getItem("msglist");
+            if (storedString == null) {
+                msgs = [];
+            } else {
+                msgs = displayMsgs(storedString);
+            }
             $('input').change(function() {
                 var txt = $('input').val();
                 var date = new Date();
@@ -17,18 +23,26 @@
                 p.innerHTML = date.toString() + " - " + txt;
                 $('div').prepend(p);
                 // Use Date as keys, msg as values
-                localStorage.setItem(date, txt);
-            }); 
+                var msg = {};
+                msg["msgdate"] = date;
+                msg["msgtext"] = txt;
+                msgs[msgs.length] = msg;
+                var string = JSON.stringify(msgs);
+                localStorage.setItem("msglist", string);
+            });
         });
 
-        function displayMsgs() {
-            for (var i = 0; i < localStorage.length; i++) {
-                var date = localStorage.key(i);
-                var txt = localStorage.getItem(localStorage.key(i));
+        function displayMsgs(storedString) {
+            var msgs = JSON.parse(storedString);
+            for (var i = 0; i < msgs.length; i++) {
+                var msg = msgs[i];
+                var date = msg["msgdate"];
+                var txt = msg["msgtext"];
                 var p = document.createElement("p");
                 p.innerHTML = date.toString() + " - " + txt;
                 $('div').prepend(p);
             }
+            return msgs;
         }
     </script>
 </head>
@@ -39,3 +53,4 @@
     <div id="log"></div>
 </body>
 </html>
+
