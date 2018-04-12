@@ -13,10 +13,10 @@
 			var myLat = 0;
 			var myLng = 0;
 			var me;
-			var username = "0QuKBYCaHf";
+			var username = "JANET";
 			/* Set to vehicle if I am a passenger,
 			 * or passenger if I am a vehicle */
-			var vehiclesOrPassengers = "vehicle";
+			var vehiclesOrPassengers = "passenger";
 			var minDist = Infinity;
 			var infowindow = new google.maps.InfoWindow ({
 				content: ""
@@ -69,7 +69,7 @@
 
 			function requestData() {
 				request = new XMLHttpRequest();
-				request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
+				request.open("POST", "https://whispering-temple-81385.herokuapp.com/rides", true);
 				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				request.onreadystatechange = function() {
 					if (request.readyState == 4 && request.status == 200) {
