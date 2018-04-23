@@ -32,7 +32,7 @@
 <h1>Issues Found</h1>
 <div>
 <h3>Issue</h3>
-<p>Database injection and cross-site scripting for "/" GET route</p>
+<p>Cross-site scripting for "/" GET route</p>
 <h3>Location</h3>
 <p>This issue was found when visiting https://ancient-dusk-55721.herokuapp.com/
    on a browser using the "/" GET route, after injecting a script into the database
@@ -61,11 +61,41 @@
    tags remain.</p>
 </div>
 
+<div>
+<h3>Issue</h3>
+<p>Database injection with MongoDB</p>
+<h3>Location</h3>
+<p>This issue was found using the "/vehicle.json" GET route. </p>
+<h3>Severity</h3>
+<p>The severity of this issue is high. By injecting Mongo queries
+   into the parameters of a request, hackers could access information
+   about users, including their location. This is an issue of privacy,
+   since the location of users should be kept hidden.</p>
+<h3>Description</h3>
+<p>I found this issue by inserting private user information into the database
+   using the "/rides" POST route with curl, and then going to the URL
+   https://ancient-dusk-55721.herokuapp.com/vehicle.json?username[$ne]=null&lat=10&lng=10/
+   in a web browser. Here is an screenshot of the address bar:</p>
+<img src="database_injection2.png" alt="Database injection attack" />
+<h3>Proof of vulnerability</h3>
+<p>Here is an screenshot of the site
+   https://ancient-dusk-55721.herokuapp.com/vehicle.json?username[$ne]=null&lat=10&lng=10/,
+   which shows sensitive user information:</p>
+<img src="database_injection.png" alt="Database injection result" />
+<h3>Resolution</h3>
+<p>The best way to prevent against database injection is simply by
+   sanitizing user input, such as stripping all special characters or
+   any keys that contain "$" in the input.</p>
+</div>
+
 <h1>Conclusion</h1>
 <p></p>
 
 <h1>References</h1>
-<p></p>
+<p>Here is a list of references that I have used to complete this project:
+	<li><a href="https://tuftsdev.github.io/WebProgramming/notes/web_security.html">Notes from Comp 20 website</a></li>
+	<li><a href="https://zanon.io/posts/nosql-injection-in-mongodb">NoSQL Injection in MongoDB</a></li>
+</p>
 
 </body>
 </html>	
