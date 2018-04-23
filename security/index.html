@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Security Assessment</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<h1>Introduction</h1>
+<p>I have been hired as a security consultant to document privacy and security
+   vulnerabilities in a web application, on both the client side and the server
+   side. This application allows passengers and vehicles to request a ride or
+   look for passengers, respectively, by sending information to a server about
+   their coordinates. The server sends back information about either vehicles
+   or passengers, which is rendered on a map for the client.</p>
+
+<h1>Methodology</h1>
+<p>I first conducted "black box testing", meaning that I attempted attacks on the
+   application without reviewing the source code. For example, I used the /rides
+   POST API with curl to insert a malicious script into the application.</p>
+<p>Next, I conducted "white box testing", meaning that I read the source code and
+   looked for vulnerabilities in the code. For example, after reviewing the source
+   code, I was suspicious that I could use another website to inject a malicious
+   script into the site, since CORS was enabled for all domains. So I wrote a new
+   HTML page that would send a request to the application with a script. </p>
+
+<h1>Abstract of Findings</h1>
+
+
+<h1>Issues Found</h1>
+<div>
+<h3>Issue</h3>
+<p>Database injection and cross-site scripting for "/" GET route</p>
+<h3>Location</h3>
+<p>This issue was found when visiting https://ancient-dusk-55721.herokuapp.com/
+   on a browser using the "/" GET route, after injecting a script into the database
+   of passengers using the "/rides" POST route, and then </p>
+<h3>Severity</h3>
+<p>The severity of this issue is high. A cross-site scripting attack has the ability
+   to present users with fraudulent web content, steal cookie information, and inject
+   malicious code into web pages. This is a very common vulnerability which is
+   important to protect against when designing web applications.</p>
+<h3>Description</h3>
+<p>I found this issue by navigating to the directory of the server in a terminal and
+   executing this command:</p>
+<p>curl --data "username='&lt;script&gt;alert(123)&lt;/script&gt;'&lat=10&lng=10" https://ancient-dusk-55721.herokuapp.com/rides"</p>
+<p>This command sends data to the server which contains a malicious script, which
+   is then injected into the database. When a user uses the "/" GET route to view
+   passengers who have requested a ride, the script is injected into the HTML and
+   is executed.</p>
+<h3>Proof of vulnerability</h3>
+<p>Here is an screenshot of the site https://ancient-dusk-55721.herokuapp.com/, after
+   a script was injected.</p>
+<img src="xss_get.png" alt="Cross-site scripting attack" />
+<h3>Resolution</h3>
+<p>One good way to protect against a cross-site scripting attack is to remove all
+   special characters from user input. It is very important to never trust user input!
+   Another way is to change "<" to "lt" and to change ">" to "gt", so that no script\
+   tags remain.</p>
+</div>
+
+<h1>Conclusion</h1>
+<p></p>
+
+<h1>References</h1>
+<p></p>
+
+</body>
+</html>	
