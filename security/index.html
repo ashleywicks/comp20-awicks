@@ -21,13 +21,22 @@
    application without reviewing the source code. For example, I used the /rides
    POST API with curl to insert a malicious script into the application.</p>
 <p>Next, I conducted "white box testing", meaning that I read the source code and
-   looked for vulnerabilities in the code. For example, after reviewing the source
-   code, I was suspicious that I could use another website to inject a malicious
-   script into the site, since CORS was enabled for all domains. So I wrote a new
-   HTML page that would send a request to the application with a script. </p>
+   looked for vulnerabilities in the code. For example, after looking at the
+   server code in index.js, I suspected that I could use database injection to
+   access user information, since user input was not sanitized. </p>
+<p>The tool that I used most for this security assessment was curl, to post
+   data to the server using the "/rides" API. I also wrote some of my own code,
+   pictured below, to expose other vulnerabilities.</p>
 
 <h1>Abstract of Findings</h1>
-
+<p>This application was found to have many security and privacy vulnerabilities.
+   The server blindly trusts all user input, and does not protect against
+   user input which could contain, for example, malicious code that could be
+   executed when certain sections of the application. It is possible for anyone
+   from any domain, without knowledge of any username, to access all data
+   about vehicles on this site, including location. This is a major privacy issue,
+   and this application should increase its security to hide private user
+   information.</p>
 
 <h1>Issues Found</h1>
 <div>
@@ -88,13 +97,56 @@
    any keys that contain "$" in the input.</p>
 </div>
 
+<div>
+<h3>Issue</h3>
+<p>Bad programming practice: CORS enabled with wildcard</p>
+<h3>Location</h3>
+<p>This issue was found using the "/rides" POST route. </p>
+<h3>Severity</h3>
+<p>The severity of this issue is high. Since cross-origin resource sharing
+   (CORS) in enabled for the POST route, any domain can access private user
+   information, including username and location. (For example, read
+   <a href="https://steemit.com/facebook/@schattenjaeger/vulnerability-allowed-hackers-to-read-private-facebook-conversations">
+   	Vulnerability Allowed Hackers to Read Private Facebook Conversations
+   </a>).</p>
+<h3>Description</h3>
+<p>I found this issue by writing a separate HTML file, which could have been
+   written by anyone with malicious intent. This HTML file sends a POST request
+   to the server with a fake username, which then returns data about all vehicle
+   users, which I then displayed on the page. Here is the code that I used to
+   perform this attack:</p>
+<img src="cors_code.png" alt="code for CORS attack"/>
+<h3>Proof of vulnerability</h3>
+<p>Here is an screenshot of the site hacks.html which I coded, which shows sensitive
+   user information for vehicles:</p>
+<img src="cors_result.png" alt="result of CORS attack" />
+<h3>Resolution</h3>
+<p>It is usually very bad practice to use CORS with a wildcard (*). CORS should
+   be enabled only for trusted domains, except for open data situations. Thus, CORS
+   should be disabled on the server side for all unknown sites, since user data
+   should be kept private. At the very least, the server should verify that the
+   given username is in a list of known usernames for the site. </p>
+</div>
+
 <h1>Conclusion</h1>
-<p></p>
+<p>This report underlines a few major security and privacy vulnerabilities of this site.
+   All of the resolutions recommended above should be followed to hide sensitive user
+   information and to protect against malicious attacks. These are all quick fixes, about
+   one line of code for each. After these fundamental issues have been addressed, the
+   application should undergo a more thorough security assessment. Tools like 
+   <a href="https://portswigger.net/burp">Burp Suite</a> can be used as a scanner and
+   proxy. The community edition is free, while the professional edition costs $349 per year.
+   Many tools also offer a spidering tool. Scanners can scan entire pages for potential
+   vulnerabilities. More generally, it is good to be aware of the 
+   <a href="https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project">OWASP Top Ten</a>, a
+   list of some of the most common and critical security risks for applications.</p>
 
 <h1>References</h1>
 <p>Here is a list of references that I have used to complete this project:
 	<li><a href="https://tuftsdev.github.io/WebProgramming/notes/web_security.html">Notes from Comp 20 website</a></li>
 	<li><a href="https://zanon.io/posts/nosql-injection-in-mongodb">NoSQL Injection in MongoDB</a></li>
+	<li><a href="https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html">Hacking NodeJS and MongoDB</a></li>
+	<li><a href="https://www.synopsys.com/blogs/software-security/preventing-common-mean-stack-vulnerabilities/">MongoDB: Preventing common vulnerabilities in the MEAN stack</a></li>
 </p>
 
 </body>
