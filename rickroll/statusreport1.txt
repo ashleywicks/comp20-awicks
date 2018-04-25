@@ -1,0 +1,26 @@
+Comp 20 Semester Group Project
+Status Report 1
+Ashley Wicks, Michael Dunkelman, Allison Endo, Jason Scanlon
+April 6, 2018
+
+
+1) WEEKLY ACCOMPLISHMENTS
+
+This week, we created all pages that our site will offer. We started
+working on the front-end of our project, writing HTML and CSS code
+to set up each page.
+
+
+2) CHALLENGES AND ISSUES
+
+So far, we have not faced any significant issues.
+
+
+3) GOALS FOR NEXT WEEK
+
+Our main goal for the coming week is to acquire the data for the team's
+schedules which we have access to. With this data, we can begin to
+work on the server side of this project, and to fill in the pages
+which we have set up with the data using Javascript code. We also plan
+to create a style sheet to make the appearance of our site more
+cohesive and appealing.
