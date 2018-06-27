@@ -1,0 +1,51 @@
+body {
+	margin: 50px;
+}
+
+h1 {
+	color: #cc6600;
+	font-family: 'Covered By Your Grace', cursive;
+	text-align: center;
+	font-size: 80px;
+}
+
+h2 {
+	font-family: 'Gentium Basic', serif;
+	text-align: center;
+	font-size: 30px;
+	background-color: #cc6600;
+	color: white;
+}
+
+h3 {
+	color: #808080;
+	text-align: center;
+	font-family: 'Gentium Basic', serif;
+	font-size: 30px;
+}
+
+p {
+	font-family: 'Gentium Basic', serif;
+	text-align: center;
+	margin: 10%;
+	font-size: 20px;
+}
+
+a {
+	font-size: 20px;
+	font-family: 'Gentium Basic', serif;
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: white;
+}
+
+button {
+	background-color: #cc6600;
+	color: white;
+	font-size: 20px;
+	font-family: 'Gentium Basic', serif;
+}

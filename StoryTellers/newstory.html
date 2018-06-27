@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="style/common.css" type="text/css" />
+	<link rel="stylesheet" href="style/newstory.css" type="text/css" />
+	<title>New Story</title>
+	<link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace|Gentium+Basic" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+		/* Update dropdown text on selection */
+		$(function() {
+			$(".dropdown-item1").click(function() {
+				$("#genre").text($(this).text());
+			});
+			$(".dropdown-item2").click(function() {
+				$("#numStoryTellers").text($(this).text());
+			});
+			$(".dropdown-item3").click(function() {
+				$("#responseWaitTime").text($(this).text());
+			});
+			$(".dropdown-item4").click(function() {
+				$("#contributionLimit").text($(this).text());
+			});
+			$(".dropdown-item5").click(function() {
+				$("#storyLimit").text($(this).text());
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<h1>Your Story Starts Here</h1>
+	<h3>Choose Your Settings Below</h3>
+	<div id="container">
+		<div class="column">
+			<div class="dropdown">
+  				<button class="btn btn-secondary dropdown-toggle" type="button" id="genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			Drama
+  				</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    				<a class="dropdown-item1" href="#"></a>
+    				<a class="dropdown-item1" href="#">Drama</a>
+    				<a class="dropdown-item1" href="#">Mystery</a>
+    				<a class="dropdown-item1" href="#">Comedy</a>
+  				</div>
+			</div>
+			<p class="label">Genre</p>
+			<br>
+			<div class="dropdown">
+  				<button class="btn btn-secondary dropdown-toggle" type="button" id="numStoryTellers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			1
+  				</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    				<a class="dropdown-item2" href="#"></a>
+    				<a class="dropdown-item2" href="#">1</a>
+    				<a class="dropdown-item2" href="#">2</a>
+    				<a class="dropdown-item2" href="#">3</a>
+    				<a class="dropdown-item2" href="#">4</a>
+    				<a class="dropdown-item2" href="#">5</a>
+  				</div>
+			</div>
+			<p class="label">Number of StoryTellers</p>
+			<br>
+			<div class="dropdown">
+  				<button class="btn btn-secondary dropdown-toggle" type="button" id="responseWaitTime" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			15 min
+  				</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    				<a class="dropdown-item3" href="#">15 min</a>
+    				<a class="dropdown-item3" href="#">30 min</a>
+    				<a class="dropdown-item3" href="#">1 hour</a>
+    				<a class="dropdown-item3" href="#">2 hours</a>
+    				<a class="dropdown-item3" href="#">1 day</a>
+  				</div>
+			</div>
+			<p class="label">Response Wait Time</p>
+			<br>
+			<label class="switch">
+ 				<input type="checkbox">
+ 				<span class="slider round"></span>
+			</label>
+			<p class="label">Allow New StoryTellers</p>
+			<br>
+			<label class="switch">
+ 				<input type="checkbox">
+ 				<span class="slider round"></span>
+			</label>
+			<p class="label">Invite Only</p>
+			<br>
+			<label class="switch">
+ 				<input type="checkbox">
+ 				<span class="slider round"></span>
+			</label>
+			<p class="label">Public</p>
+		</div>
+
+		<div class="column">
+			<input class="form-control form-control-lg" type="text" placeholder="New Story" id="title">
+			<p class="label">Title</p>
+			<br>
+			<div class="dropdown">
+  				<button class="btn btn-secondary dropdown-toggle" type="button" id="contributionLimit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			1 word
+  				</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    				<a class="dropdown-item4" href="#">1 word</a>
+    				<a class="dropdown-item4" href="#">5 words</a>
+    				<a class="dropdown-item4" href="#">1 character</a>
+    				<a class="dropdown-item4" href="#">10 characters</a>
+    				<a class="dropdown-item4" href="#">100 characters</a>
+  				</div>
+			</div>
+			<p class="label">Contribution Limit</p>
+			<br>
+			<div class="dropdown">
+  				<button class="btn btn-secondary dropdown-toggle" type="button" id="storyLimit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    			1 page
+  				</button>
+  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    				<a class="dropdown-item5" href="#">1 page</a>
+    				<a class="dropdown-item5" href="#">5 pages</a>
+    				<a class="dropdown-item5" href="#">10 pages</a>
+    				<a class="dropdown-item5" href="#">100 pages</a>
+  				</div>
+			</div>
+			<p class="label">Story Limit</p>
+			<br>
+			<label class="switch">
+ 				<input type="checkbox">
+ 				<span class="slider round"></span>
+			</label>
+			<p class="label">18+</p>
+			<br>
+			<label class="switch">
+ 				<input type="checkbox">
+ 				<span class="slider round"></span>
+			</label>
+			<p class="label">Allow Multimedia Embedding</p>
+			<br>
+			<label class="switch">
+ 				<input type="checkbox">
+ 				<span class="slider round"></span>
+			</label>
+			<p class="label">Allow Emojis</p>
+		</div>
+	</div>
+	<div id="start"><button><a href="write.html">Start Writing!</a></button></div>
+
+</body>
+
+</html>
